@@ -1,0 +1,75 @@
+<div class="container">
+    <div>
+      <div style="display: flex; justify-content: center">
+        <form  [formGroup]="myForm" (ngSubmit)="onAddCar(myForm)"  style="width: 50%"  method="POST" enctype="multipart/form-data" action="/api/admin/car">
+          <h2 class="text-center" *ngIf="!status">Ajout d'une Voiture</h2>
+          <h2 class="text-center" *ngIf="status">Modification d'une Voiture</h2>
+          <div *ngIf="myForm.value.id" class="form-group">
+            <label class="control-label">Id : </label>
+            <input id="id" type="text"  formControlName="id"  class="form-control"  readonly />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Modele de la Voiture : </label>
+            <input type="text" formControlName="modele" class="form-control" />
+            <div *ngIf="myForm.get('modele')?.invalid && myForm.get('modele')?.touched" class="text-danger">
+                <small *ngIf="myForm.get('modele')?.errors?.['required']">Le nom est requis</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Kilometrage : </label>
+            <input type="number"formControlName="kilometrage"class="form-control"/>
+            <div *ngIf="myForm.get('kilometrage')?.invalid && myForm.get('kilometrage')?.touched" class="text-danger">
+              <small *ngIf="myForm.get('kilometrage')?.errors?.['required']">le Kilometrage est requise</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Couleur : </label>
+            <input type="text"formControlName="couleur"class="form-control"/>
+            <div *ngIf="myForm.get('couleur')?.invalid && myForm.get('couleur')?.touched" class="text-danger">
+              <small *ngIf="myForm.get('couleur')?.errors?.['required']">La couleur est requis</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Prix Journalier: </label>
+            <input type="number" formControlName="prix"class="form-control" min="0"/>
+            <div *ngIf="myForm.get('prix')?.invalid && myForm.get('prix')?.touched" class="text-danger">
+              <small *ngIf="myForm.get('prix')?.errors?.['required']">Le prix journalier est requis</small>
+              <small *ngIf="myForm.get('prix')?.errors?.['min']">Le prix doit supérieur à 0</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Annee: </label>
+            <input type="number"formControlName="annee"class="form-control" min="0"/>
+            <div *ngIf="myForm.get('annee')?.invalid && myForm.get('annee')?.touched" class="text-danger">
+              <small *ngIf="myForm.get('annee')?.errors?.['required']">l'annee est requis</small>
+              <small *ngIf="myForm.get('annee')?.errors?.['min']">L'annnee doit supérieur à 0</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Image :</label>
+            <input type="file" (change)="onFileSelected($event)"  formControlName="image"class="form-control" />
+            <img *ngIf="imagePreview" [src]="imagePreview" alt="Aperçu de l'image" class="img-thumbnail mt-2" width="200">
+          </div> 
+         <div class="form-group">
+            <label class="control-label">Marque : </label>
+            <select formControlName="marque" class="form-select">
+              <option value="" disabled >Sélectionnez une marque</option>
+              <option *ngFor="let marque of listOfMarque" [value]="marque">
+                {{ marque }}
+              </option>
+            </select>
+            <div *ngIf="myForm.get('marque')?.invalid && myForm.get('marque')?.touched" class="text-danger">
+              <small *ngIf="myForm.get('marque')?.errors?.['required']">La marque est requise</small>
+            </div>
+          </div>
+   
+          <div>
+            <button *ngIf="!status"  class="btn btn-primary">Enregistrez</button>
+            <button *ngIf="status" class="btn btn-primary">Mise à jour</button>
+            <div class="text-danger">{{ error }}</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

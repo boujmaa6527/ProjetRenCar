@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand text-white" href="#">RentCarFms</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- non connecté-->
+        <ng-container *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
+          <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/login">SE CONNECTER</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/register">S'INSCRIRE </a>
+        </li>
+        </ng-container>
+         <!-- Admin connecté-->
+        <ng-container *ngIf="isAdminLoggedIn">
+          <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard Admin</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/admin/car" routerLinkActive="active">Post car</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" (click)="logout()">Logout </a>
+        </li>
+        </ng-container>
+
+         <!-- Csutomer connecté-->
+        <ng-container *ngIf="isCustomerLoggedIn">
+          <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/customer/dashboard" routerLinkActive="active">Dashboard customer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" (click)="logout()">Logout </a>
+        </li>
+        </ng-container>       
+      </ul>
+    </div>
+  </nav>

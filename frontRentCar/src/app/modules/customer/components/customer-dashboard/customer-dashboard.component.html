@@ -1,1 +1,14 @@
-<p>customer-dashboard works!</p>
+ <h1>Louer la voiture de vos rêves?</h1>
+ <h1>Avec LuxeRentCarFms c'est possible</h1>
+<div class="car-container">
+  <div class="car-card" *ngFor="let car of cars">
+    <img [src]="car.processedImg" alt="Car Image" class="car-image" />
+    <div class="car-details">
+      <h3>{{ car.marque }} {{ car.modele }}</h3>
+      <p><strong>Année:</strong> {{ car.annee }}</p>
+      <p><strong>Couleur:</strong> {{ car.couleur }}</p>
+      <p><strong>Kilométrage:</strong> {{ car.kilometrage }} km</p>
+      <p><strong>Prix:</strong> {{ car.prix }} €</p>
+    </div>
+  </div>
+

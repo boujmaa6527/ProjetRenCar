@@ -1,0 +1,70 @@
+<div class="container">
+    <div>
+      <div style="display: flex; justify-content: center">
+        <form [formGroup]="updateForm"  style="width: 50%"  enctype="multipart/form-data" >
+          <h2 class="text-center" >Modification d'une Voiture</h2>
+          <div class="form-group">
+            <label class="control-label">Modele de la Voiture : </label>
+            <input type="text" formControlName="modele" class="form-control" />
+            <div *ngIf="updateForm.get('modele')?.invalid && updateForm.get('modele')?.touched" class="text-danger">
+                <small *ngIf="updateForm.get('modele')?.errors?.['required']">Le nom est requis</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Kilometrage : </label>
+            <input type="number"formControlName="kilometrage"class="form-control"/>
+            <div *ngIf="updateForm.get('kilometrage')?.invalid && updateForm.get('kilometrage')?.touched" class="text-danger">
+              <small *ngIf="updateForm.get('kilometrage')?.errors?.['required']">le Kilometrage est requise</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Couleur : </label>
+            <input type="text" formControlName="couleur" class="form-control"/>
+            <div *ngIf="updateForm.get('couleur')?.invalid && updateForm.get('couleur')?.touched" class="text-danger">
+              <small *ngIf="updateForm.get('couleur')?.errors?.['required']">La couleur est requis</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Prix Journalier: </label>
+            <input type="number" formControlName="prix"class="form-control" min="0"/>
+            <div *ngIf="updateForm.get('prix')?.invalid && updateForm.get('prix')?.touched" class="text-danger">
+              <small *ngIf="updateForm.get('prix')?.errors?.['required']">Le prix journalier est requis</small>
+              <small *ngIf="updateForm.get('prix')?.errors?.['min']">Le prix doit supérieur à 0</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Annee: </label>
+            <input type="number"formControlName="annee"class="form-control" min="0"/>
+            <div *ngIf="updateForm.get('annee')?.invalid && updateForm.get('annee')?.touched" class="text-danger">
+              <small *ngIf="updateForm.get('annee')?.errors?.['required']">l'annee est requis</small>
+              <small *ngIf="updateForm.get('annee')?.errors?.['min']">L'annnee doit supérieur à 0</small>
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="control-label">select Image :</label>
+            <input type="file"   (change)="onFileSelected($event)" class="form-control" />
+            <img   [src]="imagePreview ? imagePreview : existingImage" alt="Aperçu de l'image" class="img-thumbnail mt-2" width="200">
+          </div> 
+         <div class="form-group">
+            <label class="control-label">Marque : </label>
+            <select formControlName="marque" class="form-select">
+              <option value="" disabled >Sélectionnez une marque</option>
+              <option *ngFor="let marque of listOfMarque" [value]="marque">
+                {{ marque }}
+              </option>
+            </select>
+            <div *ngIf="updateForm.get('marque')?.invalid && updateForm.get('marque')?.touched" class="text-danger">
+              <small *ngIf="updateForm.get('marque')?.errors?.['required']">La marque est requise</small>
+            </div>
+          </div>
+   
+          <div class=" d-flex justify-content-center mt-3 gap-2">
+            <button type="button"   class="btn btn-primary" (click)= "updatecar()">Mise à jour</button>   
+            <div class="text-danger"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+

@@ -28,3 +28,31 @@
   padding: 15px;
   background-color: #f9f9f9;
 }
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #e63946;
+  background: linear-gradient(to right, #f1faee, #a8dadc);
+  padding: 20px 30px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+}
+
+h1 {
+  animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

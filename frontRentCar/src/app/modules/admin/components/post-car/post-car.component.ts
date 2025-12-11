@@ -4,11 +4,16 @@ import { Car } from '../../../../modele/car.modele';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 import { CommonModule } from '@angular/common';
+import { MatFormField, MatLabel, MatSuffix } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from "@angular/material/datepicker";
+
 
 @Component({
   selector: 'app-post-car',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatFormField, MatLabel, MatInput, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker],
+  providers:[],
   templateUrl: './post-car.component.html',
   styleUrl: './post-car.component.css'
 })
@@ -19,7 +24,8 @@ export class PostCarComponent implements OnInit {
   error!: string;
   status: boolean= false;
   connected: boolean = false;
-  listOfMarque = ["BMW", "BUGATTI", "LONBORGINI"];
+  listOfMarque = ["BMW", "BUGATTI", "LONBORGINI", "MERCEDES"];
+  years: number[] = [];
   
 
   selectedFile: File | null = null;
@@ -27,6 +33,9 @@ export class PostCarComponent implements OnInit {
   
   constructor(private formBuilder: FormBuilder, private router: Router, private activRoute: ActivatedRoute, private adminService: AdminService ){
 
+    for( let year = 2010; year <=2025; year++){
+      this.years.push(year);
+    }
     this.car = new Car(0, "",0,"",0,"",0,"");
     this.myForm = this.formBuilder.group({
       id: [this.car.id],
@@ -37,27 +46,22 @@ export class PostCarComponent implements OnInit {
       marque: [null, Validators.required],
       annee: [null, Validators.required],
       image: [null, Validators.required],
-
-
-     
     });
-
-  }
+}
+  selectedYear: number =2025; 
  /* postCar(){
   console.log(this.myForm.value);
  }*/
   ngOnInit(): void {
     let id = this.activRoute.snapshot.params['id'];
     this.listOfMarque;
-
   }
 
-
-formSubmitted = false; 
+ formSubmitted = false; 
  onFileSelected(event: any) {
   const file = event.target.files[0];
   if(file.size > 5 * 1024 * 1024){
-    this.error = "erreru to size imge"
+    this.error = "error to size imge"
   }
   else if(file){
     this.selectedFile = file;
@@ -69,7 +73,7 @@ formSubmitted = false;
     reader.readAsDataURL(file);
   }
 }
-
+  
  onAddCar(form: FormGroup){
   this.formSubmitted = true;
 
@@ -108,7 +112,7 @@ formSubmitted = false;
         next: (response) => {
           console.log("FormaData: ", formData)
           console.log("car created successfully: ", response);
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl("/admin/dashboard");
         },
          error: (err) =>{
           console.error("error ", err);
@@ -133,10 +137,13 @@ formSubmitted = false;
     }
   })
  }
+ startDate= new Date(2022, 0, 1);
+ minDate= new Date(2020, 0, 1);
+ maxDate= new Date(2022, 0, 1);
+
+ setYear(event: Date){
+  this.myForm.get('annee')?.setValue(event);
+ }
+
 }
-
-
-
-
-
 

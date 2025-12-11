@@ -16,8 +16,21 @@ export class AdminService {
       
   }
 
+
+  deleteCar(id: number): Observable<any> {
+      return this.http.delete(environment.host +"/admin/car/"+ id);
+  }
   getAllCars(): Observable<any> {
     return this.http.get(environment.host + "/admin/cars")
+  }
+
+
+  getCarById(id: number): Observable<any> {
+    return this.http.get(environment.host+ "/admin/car/" + id)
+  }
+  updateCar(carId: number,carDto: FormData): Observable<any>{
+    return this.http.put(environment.host+ "/admin/car/"+ carId, carDto)
+      
   }
  /* createAuthorization(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();

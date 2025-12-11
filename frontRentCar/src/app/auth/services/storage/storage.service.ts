@@ -20,8 +20,16 @@ export class StorageService {
     localStorage.setItem(USER, JSON.stringify(user));
   }
   static getUser():any{
+
     const userData = localStorage.getItem(USER);
-    return userData ? JSON.parse(userData) : null; 
+    if(!userData) return null;
+    try{
+      return JSON.parse(userData);
+    }catch(e){
+      console.log("error user");
+      return null;
+    }
+    
   }
 
   static getUserRole(): string{

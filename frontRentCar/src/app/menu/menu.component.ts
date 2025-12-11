@@ -14,7 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MenuComponent {
  
-
+  username: string = '';
 
   isCustomerLoggedIn: boolean = StorageService.isCustomerLoggedIn();
     isAdminLoggedIn: boolean = StorageService.isAdminLoggedIn();
@@ -28,6 +28,9 @@ export class MenuComponent {
         if(event.constructor.name === "NavigationEnd"){
           this.isAdminLoggedIn = StorageService.isAdminLoggedIn();
           this.isCustomerLoggedIn = StorageService.isCustomerLoggedIn();
+          
+          const user = StorageService.getUser();
+          this.username = user?.username || '';
   
         }
       })

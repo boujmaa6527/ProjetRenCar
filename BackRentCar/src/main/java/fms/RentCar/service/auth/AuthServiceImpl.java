@@ -26,10 +26,14 @@ public class AuthServiceImpl implements AuthService{
            User newAdminaccount = new User();
            newAdminaccount.setName("Admin");
            newAdminaccount.setEmail("admin@test.com");
-           newAdminaccount.setPassword(new BCryptPasswordEncoder().encode("admin"));
+           newAdminaccount.setPassword(
+                   new BCryptPasswordEncoder().encode("admin")
+           );
            newAdminaccount.setUserRole(UserRole.ADMIN);
            userRepository.save(newAdminaccount);
            System.out.println("Admin account created successfully");
+        }else{
+
         }
     }
 

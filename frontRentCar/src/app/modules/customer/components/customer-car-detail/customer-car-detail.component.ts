@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AdminService } from '../../../admin/services/admin.service';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-customer-car-detail',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, FormsModule],
   templateUrl: './customer-car-detail.component.html',
   styleUrls: ['./customer-car-detail.component.css']
 })
@@ -60,11 +60,20 @@ export class CustomerCarDetailComponent implements OnInit{
       console.log("Réservation réussie: ", result);
     }, (error) => {
       console.error("Erreur lors de la réservation: ", error);
-      alert("Erreur lors de la réservation. Veuillez réessayer.");
+      
     });
 
     console.log("Réservation de la voiture avec ID:", this.carId);
     console.log("Date de début:", this.reservation.startDate);
     console.log("Date de fin:", this.reservation.endDate);
   }
+
+sommeTotal() {
+  const start = new Date(this.reservation.startDate);
+  const end = new Date(this.reservation.endDate);
+  const timeDiff = Math.abs(end.getTime() - start.getTime());
+  const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+  return diffDays * this.car.prix;
+  }
+  
 }

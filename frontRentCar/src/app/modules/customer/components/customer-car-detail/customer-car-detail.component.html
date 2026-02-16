@@ -5,7 +5,7 @@
 
     <img *ngIf="existingImage" [src]="existingImage" alt="Car Image" class="card-img-top img-fluid"
       style="max-height: 300px; object-fit: cover;" />
-    <div class="card-body">
+    <div class="card-body" style="text-align: center;">
       <h5 class="card-title">{{ car.marque }} {{ car.modele }}</h5>
 
       <ul class="list-group list-group-flush mb-3">
@@ -24,14 +24,22 @@
         <form (ngSubmit)="reserveCar()">
           <div class="mb-3">
             <label for="startDate" class="form-label">Date de début</label>
-            <input type="date" id="startDate" class="form-control" name="startDate" required>
+            <input type="date" id="startDate" class="form-control" name="startDate" 
+            [(ngModel)]="reservation.startDate" required>
           </div>
+          
           <div class="mb-3">
             <label for="endDate" class="form-label">Date de fin</label>
-            <input type="date" id="endDate" class="form-control" name="endDate" required>
+            <input type="date" id="endDate" class="form-control" name="endDate"
+             [(ngModel)]="reservation.endDate" required>
           </div>
-          <button type="submit" class="btn btn-primary">Réserver</button>
+          <div class="alert alert-info" role="alert">
+            <p>Total de Votre Réservation: {{ sommeTotal()? sommeTotal() : 0 }} €
+            </p>
+          </div>
+          <button type="submit" class="btn btn-primary" >Réserver et Toujours Payer en Cash</button>
         </form>
+        
       </div>
     </div>
   </div>

@@ -7,13 +7,15 @@
     class="car-image" 
     [class.disabled]="!isLoggedIn"
     (click)="openCarDetail(car.id)" />
-    <div class="car-details">
+    <div class="car-details" style="text-align: center;">
       <h3>{{ car.marque }} {{ car.modele }}</h3>
       <p><strong>Année:</strong> {{ car.annee }}</p>
       <p><strong>Couleur:</strong> {{ car.couleur }}</p>
       <p><strong>Kilométrage:</strong> {{ car.kilometrage }} km</p>
       <p><strong>Prix:</strong> {{ car.prix }} €/jour</p>
-       <p><button class="btn btn-success" (click)="openCarDetail(car.id)">Réserver</button></p>
+       <p>
+        <button class="btn btn-success" (click)="openCarDetail(car.id)">Réserver</button>
+      </p>
     </div>
   </div>
 

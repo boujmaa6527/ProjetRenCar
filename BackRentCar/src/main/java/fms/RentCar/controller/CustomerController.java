@@ -2,13 +2,11 @@ package fms.RentCar.controller;
 
 
 import fms.RentCar.dto.CarDto;
+import fms.RentCar.dto.ReserveRequest;
 import fms.RentCar.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,9 @@ public class CustomerController {
         List<CarDto> carDtoList = customerService.getAllCars();
         return ResponseEntity.ok(carDtoList);
     }
+
+//    @PostMapping("reserver/{carId}")
+//    public ResponseEntity<String> reserveCar (@PathVariable Long carId, @RequestBody ReserveRequest request){
+//        return "";
+//    }
 }

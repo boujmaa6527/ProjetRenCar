@@ -9,7 +9,7 @@ import { AdminDashboardComponent } from './modules/admin/components/admin-dashbo
 
 const routes: Routes = [
   {path: "register", component: SignupComponent},
-  {path: "login", component: LoginComponent}
+  {path: "login", component: LoginComponent},
  
 ]
 @NgModule({

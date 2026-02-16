@@ -18,7 +18,7 @@ export class UpdateCarComponent implements OnInit{
     error!: string;
     status: boolean= false;
     connected: boolean = false;
-    listOfMarque = ["BMW", "BUGATTI", "LONBORGINI", "MERCEDES", "FERRARI", "PORCHE"];
+    listOfMarque = ["BMW", "BUGATTI", "LONBORGINI", "MERCEDES", "FERRARI", "PORCHE", "AUDI", "RENAULT", "PEUGEOT", "CITROEN"]
     imagePreview!: string|ArrayBuffer|null;
     existingImage: string | null = null;
     ValidateForm: FormGroup<any> | undefined;

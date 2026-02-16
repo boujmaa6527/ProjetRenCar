@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -13,14 +13,18 @@ import { RouterModule } from '@angular/router';
 })
 export class CustomerDashboardComponent implements OnInit {
 
+
   
   cars: any = [];
+  isLoggedIn: any;
+  response: any;
   
-  constructor(private customerService: CustomerService ){}
+  constructor(private customerService: CustomerService, private router: Router ){}
   
   
   ngOnInit(): void {
    
+    this.isLoggedIn = localStorage.getItem("user") !== null;
     this.getAllcars();
   }
 
@@ -33,5 +37,20 @@ export class CustomerDashboardComponent implements OnInit {
       });
     })
   }
+  openCarDetail(id: number) {
+    if(!this.isLoggedIn){
+      alert("Login or register to access this feature.");
+      this.response = confirm("Do you want to login now ?");
+      if(this.response === true){
+        this.router.navigateByUrl("/login")
+      }else{
+        alert("Vous n'avez pas accès à cette fonctionnalité.");
+      }
+      return;
+    }
+  this.router.navigate(['/customer/carDetail/', id])
+}
+
+
 
 }

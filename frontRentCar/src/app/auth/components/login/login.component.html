@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h2 class="text-center">Connexion</h2>
                     
-                    <form [formGroup] = "myForm">
+                    <form [formGroup] = "myForm" (ngSubmit)="login()">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" formControlName="email" placeholder="Entrez votre email">
@@ -15,7 +15,7 @@
                             <input type="password" class="form-control" id="password" formControlName="password" placeholder="Entrez votre mot de passe">
                         </div>
                         <div class="button">
-                            <button type="submit" class="btn btn-primary btn-block" (click)="login()" [disabled]="myForm.invalid" >Se connecter</button>
+                            <button type="submit" class="btn btn-primary btn-block"  [disabled]="myForm.invalid" >Se connecter</button>
                         </div>
                         <div class="text-center mt-3">
                             <p>Vous n'avez pas de compte ? <a routerLink = "/register">S'inscrire</a></p>

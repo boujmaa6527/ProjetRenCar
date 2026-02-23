@@ -32,11 +32,11 @@ export class AdminService {
     return this.http.put(environment.host+ "/admin/car/"+ carId, carDto)
       
   }
- /* createAuthorization(): HttpHeaders {
+ createAuthorization(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(
       'Authorization',
-      'Bearer ' + StorageService.getUser()
+      'Bearer ' + StorageService.getToken()
     );
-  }*/
+  }
 }

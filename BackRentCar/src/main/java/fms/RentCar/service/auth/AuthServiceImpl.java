@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService{
         User adminAccount = userRepository.findByUserRole(UserRole.ADMIN);
         if(adminAccount == null){
            User newAdminaccount = new User();
-           newAdminaccount.setName("Admin");
+           newAdminaccount.setUsername("Admin");
            newAdminaccount.setEmail("admin@test.com");
            newAdminaccount.setPassword(
                    new BCryptPasswordEncoder().encode("admin")
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService{
     public UserDTO createCustomer(SignupRequest signupRequest) {
 
         User user = new User();
-        user.setName(signupRequest.getName());
+        user.setUsername(signupRequest.getName());
         user.setEmail(signupRequest.getEmail());
         user.setPassword(
                 new BCryptPasswordEncoder().encode(signupRequest.getPassword())

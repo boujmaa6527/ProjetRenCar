@@ -49,4 +49,8 @@ export class StorageService {
   static logout() : void {
     localStorage.removeItem(USER);
   }
+
+  static getToken(): string | null {
+    return localStorage.getItem("jwt");
+  }
 }

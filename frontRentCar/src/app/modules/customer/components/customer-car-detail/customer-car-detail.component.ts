@@ -23,6 +23,8 @@ export class CustomerCarDetailComponent implements OnInit{
     startDate: '',
     endDate: ''
   };
+  user!: any;
+  token: string | null = null;
 
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private customerService: CustomerService){}
@@ -30,7 +32,17 @@ export class CustomerCarDetailComponent implements OnInit{
  
   ngOnInit(): void {
    this.carId = Number(this.route.snapshot.paramMap.get('id'));
+    this.token = localStorage.getItem("jwt");
+    console.log("Token récupéré: ", this.token);
+   const userData = localStorage.getItem("user");
+    if (userData) {
+      this.user = JSON.parse(userData);
+      console.log("Utilisateur connecté: ", this.user);
+      console.log("Username: ", this.user.role?.username);
+    }
+
    console.log("Id de la voiture: ", this.carId);
+   console.log("Utilisateur connecté: ", this.user);
     this.getCarById();
   }
 
@@ -66,6 +78,9 @@ export class CustomerCarDetailComponent implements OnInit{
     console.log("Réservation de la voiture avec ID:", this.carId);
     console.log("Date de début:", this.reservation.startDate);
     console.log("Date de fin:", this.reservation.endDate);
+    console.log("Utilisateur depuis lcoale storage: ", localStorage.getItem("user"));
+    console.log("objet user parsé: ", this.user);
+    console.log("id de l'user : ",this.user.id);
   }
 
 sommeTotal() {

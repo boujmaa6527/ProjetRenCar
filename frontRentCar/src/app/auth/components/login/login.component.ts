@@ -28,20 +28,26 @@ myForm!: FormGroup;
     console.log(this.myForm.value)
     this.authService.login(this.myForm.value).subscribe((result) => {
       console.log(result);
+      localStorage.setItem("jwt", result.jwt);
+      localStorage.setItem("user", JSON.stringify(result));
+
+      console.log("Token stocké: ", localStorage.getItem("jwt"));
       if(result.userId != null){
         const user = {
           id: result.userId,
           role: result.userRole
         }
         StorageService.saveUser(user);
+
        if( StorageService.isAdminLoggedIn()){
         this.router.navigateByUrl("/admin/dashboard");
        } else if (StorageService.isCustomerLoggedIn()){
            this.router.navigateByUrl("/customer/dashboard");
        }
       }
+         
     })
-    this.router.navigateByUrl("/")
+ 
 
   }
 }

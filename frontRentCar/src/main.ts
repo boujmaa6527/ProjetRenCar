@@ -15,6 +15,6 @@ registerLocaleData(fr);
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient()
+    provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient(), provideAnimationsAsync()
   ]
 });

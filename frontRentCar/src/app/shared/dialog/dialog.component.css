@@ -1,0 +1,48 @@
+/* move croos icon to the right */
+.p-dialog .p-dialog-header .p-dialog-header-icon
+{
+  display: none;
+}
+
+h1.success {
+    color: #079b13;
+    text-align: center;
+}
+
+h1.error {
+    color: #c62828;
+    text-align: center;
+}
+h1.warning {
+    color: #ed6c02;
+    text-align: center;
+}
+h1.info {
+    color: #0288d1;
+    text-align: center;
+}
+
+
+/* Successfully generated code for DialogComponent. */
+.p-dialog-content.success{
+  background: #079b13;
+  border-left: 4px solid #2e7d32
+  
+}
+
+.p-dialog-content.error {
+  background: #ffebee;
+  border-left: 4px solid #c62828
+  
+
+}
+
+.p-dialog-content.warning {
+  background: #fff3e0;
+  border-left: 4px solid #ed6c02
+  
+}
+
+.p-dialog-footer {
+  text-align: center;
+}

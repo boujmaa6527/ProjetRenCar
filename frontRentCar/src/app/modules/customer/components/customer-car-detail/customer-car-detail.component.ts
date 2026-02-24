@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AdminService } from '../../../admin/services/admin.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogComponent } from '../../../../shared/dialog/dialog.component';
+
 
 @Component({
   selector: 'app-customer-car-detail',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, FormsModule, DynamicDialogModule],
+  providers: [DialogService],
   templateUrl: './customer-car-detail.component.html',
   styleUrls: ['./customer-car-detail.component.css']
 })
@@ -27,7 +32,11 @@ export class CustomerCarDetailComponent implements OnInit{
   token: string | null = null;
 
 
-  constructor(private route: ActivatedRoute, private adminService: AdminService, private customerService: CustomerService){}
+  constructor(private route: ActivatedRoute, 
+              private adminService: AdminService, 
+              private customerService: CustomerService, 
+              private router: Router,
+              private dialogService: DialogService){}
   
  
   ngOnInit(): void {
@@ -46,6 +55,12 @@ export class CustomerCarDetailComponent implements OnInit{
     this.getCarById();
   }
 
+  openDialog(title: string, message: string, type: 'success' | 'error' | 'warning') {
+    this.dialogService.open(DialogComponent, {
+      data: { title, message, type }
+    });
+  }
+
   getCarById(){
 
     this.adminService.getCarById(this.carId).subscribe((result: any) => {
@@ -60,11 +75,11 @@ export class CustomerCarDetailComponent implements OnInit{
   }
   reserveCar() {
     if(!this.reservation.startDate || !this.reservation.endDate){
-      alert("Veuillez remplir les deux dates");
+      this.openDialog("Erreur", "Veuillez remplir les deux dates", 'error');
       return;
     }
     if(this.reservation.startDate > this.reservation.endDate){
-      alert("La date de début doit être antérieure à la date de fin");
+      this.openDialog("Erreur", "La date de début doit être antérieure à la date de fin", 'error');
       return;
     }
 
@@ -81,6 +96,9 @@ export class CustomerCarDetailComponent implements OnInit{
     console.log("Utilisateur depuis lcoale storage: ", localStorage.getItem("user"));
     console.log("objet user parsé: ", this.user);
     console.log("id de l'user : ",this.user.id);
+    this.openDialog("Succès", "Voiture réservée avec succès!", 'success');
+    this.router.navigateByUrl("/customer/dashboard")
+
   }
 
 sommeTotal() {

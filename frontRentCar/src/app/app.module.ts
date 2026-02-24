@@ -11,6 +11,10 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { Dialog, DialogModule } from "@angular/cdk/dialog";
+import { DialogComponent } from "./shared/dialog/dialog.component";
+import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 
 
 
@@ -32,6 +36,12 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
         MatNativeDateModule,
         MatFormFieldModule,
         MatInputModule,
+        DialogModule,
+        DynamicDialogModule,
+        DialogService
+        
+        
+        
     ],
     providers: [FormBuilder],
      bootstrap: [AppComponent]

@@ -1,7 +1,20 @@
 /* move croos icon to the right */
-.p-dialog .p-dialog-header .p-dialog-header-icon
+.p-dialog{
+  top: 20 px !important;
+  margin: 0 auto !important;
+}
+
+.p-dialog-header .p-dialog-header-icon
 {
-  display: none;
+  background-color: #000000;
+  display: none !important;
+}
+
+.custome-dialog {
+  background: white;
+  padding: 20 px;
+  border-radius: 8px;  
+
 }
 
 h1.success {

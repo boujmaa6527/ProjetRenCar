@@ -10,13 +10,15 @@ import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
   imports: [CommonModule],
   styleUrl: './dialog.component.css',
   template: `
+  <div class="custome-dialog">
   <h1 [ngClass]="data.type">{{ data.title }}</h1>
 
-  <div class="p-dialog-content" [ngClass]="data.type"> 
-    {{ data.message }}
-  </div>
-  <div class="p-dialog-footer">
-    <button pButton label="OK" (click)="close()"></button>
+    <div class="p-dialog-content" [ngClass]="data.type"> 
+      {{ data.message }}
+    </div>
+    <div class="p-dialog-footer">
+      <button pButton label="OK" (click)="close()"></button>
+    </div>
   </div>
   `
 })

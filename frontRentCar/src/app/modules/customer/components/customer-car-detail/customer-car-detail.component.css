@@ -1,0 +1,28 @@
+.p-dialog-content.success{
+  background-color: #000000;
+  background: #079b13;
+  border-left: 4px solid #2e7d32
+  
+}
+
+.p-dialog-content.error {
+  background: #ffebee;
+  border-left: 4px solid #c62828
+  
+
+}
+
+.p-dialog-content.warning {
+  background: #fff3e0;
+  border-left: 4px solid #ed6c02
+  
+}
+
+.p-dialog-footer {
+  text-align: center;
+}
+.p-dialog-header .p-dialog-header-icon
+{
+  background-color: #000000;
+  display: none !important;
+}
